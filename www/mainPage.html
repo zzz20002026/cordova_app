@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+        
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <title>app</title>
+</head>
+
+<body style="background-color: rgb(238, 227, 206);" onload="ShowTime()">
+
+    <script src="https://kit.fontawesome.com/60f5620dc5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <!-- ============================= 導覽列 NavBar ============================= -->
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background:linear-gradient(135deg, #359e87 0%,#57ca85 100%);">
+        <div class="container-fluid" >
+            
+            <img src="img/csie.png" class="" alt="..." width="45" float: left>
+            
+            <a class="navbar-brand" href="" style="color: rgb(255,255,255); text-shadow: 3px 3px 5px rgb(0,0,0); font-size: 1.8em;">食品安全信任網</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav" >
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="btn btn-light me-md-2 mt-1" href="mainPage-3.html">時間表</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="btn btn-light me-md-2 mt-1" href="mainPage-3.html">食材清洗時間表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-light me-md-2 mt-1" href="mainPage-3.html">內場廚房清洗表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-light me-md-2 mt-1" href="mainPage-3.html">內場人員清洗表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-light me-md-2 mt-1" href="mainPage-3.html">客戶回饋查看</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-light me-md-2 mt-1" href="index.html">登出</a>
+                    </li>
+                    
+
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================= 容器 Container ============================= -->
+    <br>
+        <div class="container-fluid">
+            <!-- <img src="img/icon1.png" class="rounded float-start" alt="..."> -->
+            <img src="img/icon1.png" class="img-fluid" style="float: left; margin: 30px" width="100">
+            <br><br>
+            <h2 class="rounded float-right">[ Store Name ]</h2>
+            <div id="showbox" style="font-size:20px;"></div>
+            <hr size="5px" align="center" width="100%">
+            <br><br>
+
+            <center>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" onclick="javascript:scan();" style="background-color:rgb(238, 227, 206); border: none;"> 
+                            <div id="c2">
+                                <img src="img/upload.png" class="" alt="..." width="50"> 
+                                <h4>食材進貨</h4>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" onclick="javascript:scan();" style="background-color:rgb(238, 227, 206); border: none;"> 
+                            <div id="c3">
+                                <img src="img/upload.png" class="" alt="..." width="50"> 
+                                <h4>食材清洗</h4>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" onclick="javascript:scan();" style="background-color:rgb(238, 227, 206); border: none;"> 
+                            <div id="c4">
+                                <img src="img/upload.png" class="" alt="..." width="50"> 
+                                <h4>廚房清洗</h4>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" onclick="javascript:scan();" style="background-color:rgb(238, 227, 206); border: none;"> 
+                            <div id="c5">
+                                <img src="img/upload.png" class="" alt="..." width="50"> 
+                                <h4>人員清洗</h4>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+    
+            </center>
+
+        </div>
+    <br>
+    <!-- ============================= 橫幅 footer ============================= -->
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        function scan(){
+            cordova.plugins.barcodeScanner.scan(
+                function(result){
+                    if(!result.cancelled){
+                        if(result.format == "QR_CODE") {
+                            var value = result.text;
+                            alert('Your Code Is '+value);
+                        }
+                    }
+                },
+                function (error) {
+                    alert('Scanning Failed '+error);
+                }
+            );
+        }
+    </script>
+
+    <script language="JavaScript">
+        function ShowTime(){
+            var NowDate=new Date();
+            var m1=NowDate.getMonth()+1;
+            var d=NowDate.getDate();
+            var h=NowDate.getHours();
+            var m=NowDate.getMinutes();
+            var s=NowDate.getSeconds();　
+            document.getElementById('showbox').innerHTML = m1+'月'+d+'號'+h+'時'+m+'分';
+            setTimeout('ShowTime()',1000);
+        }
+    </script>
+
+    </body>
+</html>
